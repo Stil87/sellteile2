@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+
+import { startFirebaseUi, fire } from '../utils/firebaseConfig'
+import { firebaseLogOut } from '../utils/firebaseAPI'
+
 import 'firebaseui/dist/firebaseui.css'
-import { startFirebaseUi, fire } from './utils/firebaseConfig'
-import {firebaseLogOut} from './utils/firebaseAPI'
+import { Navigation } from './Router';
 
 
-
-function App() {
-
+export function Authenticate() {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function App() {
       if (user) { setUserLoggedIn(true) }
       else {
         setUserLoggedIn(false)
-        startFirebaseUi('#test')
+        startFirebaseUi('#loginUI')
       }
     })
     return () => {
@@ -25,10 +25,8 @@ function App() {
 
 
   return (
-    userLoggedIn ? <div onClick={()=>firebaseLogOut()}>Hello</div> :
-      <div id="test">
-      </div>
+    userLoggedIn ? <Navigation/> :
+      <div id="loginUI"/>
+      
   );
 }
-
-export default App;
