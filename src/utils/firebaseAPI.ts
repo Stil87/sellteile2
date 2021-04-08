@@ -1,6 +1,11 @@
-import {fire } from './firebaseConfig'
 
-import { User } from './types'
+import { fire } from './firebaseConfig'
+
+import { Part, User } from './types'
+
+
+
+const db = fire.firestore()
 
 //firebase User Auth 
 export const firebaseSignUp = async (user: User) => {
@@ -23,6 +28,22 @@ export const firebaseLogOut = async () => {
   await fire.auth().signOut()
     .then(res => console.log('log out ', res))
     .catch(err => console.log(err))
+}
+
+
+//Part DB
+
+export const fetchParts = async () => {
+  const partList: Part[] = []
+  db
+    .collection('Parts')
+    .get()
+    .then(snap => snap.docs.map(el => console.log(el))
+    )
+
+
+
+
 }
 
 
