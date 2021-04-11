@@ -12,10 +12,14 @@ export interface Part extends Base {
   onEbaySince?: string,
   price: number,
   saved: boolean,
-  images: []
+  pictures: PartImage[]
 }
 
 export interface User extends Base {
   email: string,
   password:string
+}
+
+export interface PartImage extends Base {
+  url: string
 }

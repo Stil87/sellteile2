@@ -7,6 +7,8 @@ import { Part, User } from './types'
 
 const db = fire.firestore()
 
+const PART_COLLECTION_NAME = 'Parts'
+
 //firebase User Auth 
 export const firebaseSignUp = async (user: User) => {
   fire
@@ -33,13 +35,18 @@ export const firebaseLogOut = async () => {
 
 //Part DB
 
-export const fetchParts = async () => {
-  const partList: Part[] = []
-  db
-    .collection('Parts')
-    .get()
-    .then(snap => snap.docs.map(el => console.log(el))
-    )
+export const fetchParts = async (): Promise<Part[]> => {
+  try {
+    return db
+      .collection(PART_COLLECTION_NAME)
+      .get()
+      .then(snap => snap.docs.map(el => el.data() as Part))
+
+  } catch (error) {
+    console.log(error)
+    return error
+
+  }
 
 
 

@@ -9,17 +9,17 @@ export function Navigation() {
 
 
   return (
-    <ErrorBoundary>
-      <Router>
+    <Router>
+      <ErrorBoundary>
         <Switch>
+
           <Suspense fallback={<Spinner />}>
             <PartList/>
-
           </Suspense>
 
         </Switch>
-      </Router>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </Router>
   )
 
 }
