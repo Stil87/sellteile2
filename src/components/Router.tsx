@@ -1,7 +1,6 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import ErrorBoundary from './Error'
-import Spinner from "react-spinners/BounceLoader";
 import { MainPageContainer } from './MainPageContainer';
 
 export function Navigation() {
@@ -12,11 +11,7 @@ export function Navigation() {
     <Router>
       <ErrorBoundary>
         <Switch>
-
-          <Suspense fallback={<Spinner />}>
-            <MainPageContainer/>
-          </Suspense>
-
+            <MainPageContainer />
         </Switch>
       </ErrorBoundary>
     </Router>

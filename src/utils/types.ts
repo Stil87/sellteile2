@@ -1,5 +1,5 @@
 export interface Base {
-  id: string | null
+  id: number | null
 }
 
 export interface Part extends Base {

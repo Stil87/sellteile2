@@ -1,6 +1,5 @@
 import React from "react";
-import { AppBar, createStyles, Fab, fade, IconButton, InputBase, makeStyles, Theme, Toolbar } from "@material-ui/core";
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, createStyles, Fab, fade, InputBase, makeStyles, Theme, Toolbar } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       zIndex: 1,
       top: -30,
-      left: 0,
+      left: '65%',
       right: 0,
       margin: '0 auto',
     },
@@ -66,16 +65,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
   }),
 );
-export default function Appbar() {
+export default function Appbar({updatePartList}:{updatePartList:Function}) {
 
   const classes = useStyles();
 
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { value } = e.currentTarget
+    updatePartList(parseInt(value))
+  
+  }
+
   return (
-
-
-    <AppBar position="sticky" color="primary" className={classes.appBar}>
+    <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Toolbar>
-
         <Fab color="secondary" aria-label="add" className={classes.fabButton}>
           <AddIcon />
         </Fab>
@@ -85,7 +87,9 @@ export default function Appbar() {
             <SearchIcon />
           </div>
           <InputBase
-            placeholder="Search…"
+            type='number'
+            onChange={handleChange}
+            placeholder="Teilenummer"
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
@@ -93,7 +97,6 @@ export default function Appbar() {
             inputProps={{ 'aria-label': 'search' }}
           />
         </div>
-
       </Toolbar>
     </AppBar>
   )
