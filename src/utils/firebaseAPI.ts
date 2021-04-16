@@ -5,9 +5,9 @@ import { Part, User } from './types'
 
 
 
-const db = fire.firestore()
+export const db = fire.firestore()
 
-const PART_COLLECTION_NAME = 'Parts'
+export const PART_COLLECTION_NAME = 'Parts'
 
 //firebase User Auth 
 export const firebaseSignUp = async (user: User) => {
@@ -45,11 +45,13 @@ export const fetchParts = async (): Promise<Part[]> => {
   } catch (error) {
     console.log(error)
     return error
-
   }
+}
 
-
-
+export   function partStream (observer:any)  {
+  return  db
+    .collection(PART_COLLECTION_NAME)
+    .onSnapshot(observer)
 
 }
 
