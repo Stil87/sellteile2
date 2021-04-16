@@ -1,8 +1,7 @@
-import React, { Suspense, useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { partStream } from "../utils/firebaseAPI";
 import { Part } from "../utils/types";
 import Appbar from "./Appbar";
-import Spinner from "react-spinners/BounceLoader";
 
 
 
@@ -10,10 +9,10 @@ import Spinner from "react-spinners/BounceLoader";
 const PartList = React.lazy(() => import('./PartList')); // Lazy-loaded
 
 
-export function MainPageContainer() {
+export default function MainPageContainer() {
 
   const [partList, setPartList] = useState<Part[]>([])
-  const [updatedPartList, setUpdatedPartList] = useState<Part[]>([])
+  const [updatedPartList, setUpdatedPartList] = useState<Part[]|undefined>([])
 
   const [switchShowSelectedPart, setSwitchShowSelectedPart] = useState<boolean>(false)
 
@@ -33,15 +32,14 @@ export function MainPageContainer() {
     else {
       setSwitchShowSelectedPart(true)
       const selectedPart: Part | undefined = partList.find(part => part.id === number)
-      selectedPart ? setUpdatedPartList([selectedPart]) : setUpdatedPartList([])
+      selectedPart ? setUpdatedPartList([selectedPart]) : setUpdatedPartList(undefined)
+
     }
   }
 
   return (
     <>
-      <Suspense fallback={<div style={{ position: "fixed", top: "45%", left: "45%", transform: "translate(-50%, -50%)" }}> <Spinner/></div>}>
-        <PartList partList={switchShowSelectedPart ? updatedPartList : partList} />
-      </Suspense>
+      <PartList partList={switchShowSelectedPart ? updatedPartList : partList} />
       <Appbar updatePartList={updatePartList} />
     </>
   )
