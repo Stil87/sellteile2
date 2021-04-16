@@ -5,9 +5,7 @@ import PartCard from "./PartCard"
 
 
 
-export default function PartList({partList}:{partList:Part[]}) {
-  
+export default function PartList({ partList }: { partList: Part[] }) {
 
-  return <div>{partList.map(part => <PartCard key={part.firebaseId} part={part} />)}</div>
-
+  return <div>{partList.length ? partList.map(part => <PartCard key={part.firebaseId} part={part}  />): <p>Nichts gefunden ....</p>}</div>
 }
