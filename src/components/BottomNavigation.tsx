@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       top: 'auto',
       bottom: 0,
+      position:'absolute'
     },
     grow: {
       flexGrow: 1,
