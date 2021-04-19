@@ -35,7 +35,7 @@ export function Navigation() {
           </Suspense>
           </Route>
           <Route path={'/Create'}
-            render={props => <CreatePart props={props}/> }/>
+            render={(props) => <CreatePart props={props}/> }/>
         </Switch>
       </ErrorBoundary>
     </Router>

@@ -4,6 +4,7 @@ import { startFirebaseUi, fire } from '../utils/firebaseConfig'
 
 import 'firebaseui/dist/firebaseui.css'
 import { Navigation } from './Router';
+import { createStyles } from '@material-ui/core';
 
 
 export function Authenticate() {

@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ImageGridList from "./ImageGridList";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -31,6 +32,13 @@ const useStyles = makeStyles({
 
 export default function PartCard({ part }: { part: Part }) {
   const classes = useStyles();
+  let history = useHistory()
+
+  function handleDetailClick() {
+    history.push({ pathname: '/Create', state: part })
+
+
+  }
 
   return (
     <Card className={classes.root}>
@@ -52,7 +60,7 @@ export default function PartCard({ part }: { part: Part }) {
         <ImageGridList part={part} />
       </CardContent>
       <CardActions>
-        <Button size="small">DETAILS</Button>
+        <Button onClick={handleDetailClick} size="small">DETAILS</Button>
       </CardActions>
     </Card>
   );
