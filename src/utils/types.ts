@@ -13,7 +13,7 @@ export interface Part extends Base {
   createdAt?:string,
   onEbaySince?: string,
   price: number,
-  pictures?: PartPicture[]
+  pictures: PartPicture[]
 }
 
 export interface User extends Base {

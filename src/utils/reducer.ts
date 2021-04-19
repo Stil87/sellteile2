@@ -16,10 +16,7 @@ export const initialPartState: Part = {
   model: '',
   description: '',
   price: 0,
-
-
-
-
+  pictures:[]
 }
 
 export const partReducer:React.Reducer<Part,Action> =(state: Part, action: Action) =>{

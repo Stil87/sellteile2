@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { partStream } from "../utils/firebaseAPI";
+import React, {  useState } from "react";
+
 import { Part } from "../utils/types";
 import Appbar from "./Appbar";
 import PartList from "./PartList";

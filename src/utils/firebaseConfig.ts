@@ -6,7 +6,7 @@ import * as firebaseui from 'firebaseui'
 import 'firebase/storage';
 import 'firebase/firebase-auth'
 import 'firebase/firebase-firestore'
-import { preProcessFile } from "typescript";
+
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
