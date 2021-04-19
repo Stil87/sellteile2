@@ -12,7 +12,7 @@ const PartList = React.lazy(() => import('./PartList')); // Lazy-loaded
 export default function MainPageContainer() {
 
   const [partList, setPartList] = useState<Part[]>([])
-  const [updatedPartList, setUpdatedPartList] = useState<Part[]|undefined>([])
+  const [updatedPartList, setUpdatedPartList] = useState<Part[] | undefined>([])
 
   const [switchShowSelectedPart, setSwitchShowSelectedPart] = useState<boolean>(false)
 
@@ -32,8 +32,7 @@ export default function MainPageContainer() {
     else {
       setSwitchShowSelectedPart(true)
       const selectedPart: Part | undefined = partList.find(part => part.id === number)
-      selectedPart ? setUpdatedPartList([selectedPart]) : setUpdatedPartList(undefined)
-
+      selectedPart ? setUpdatedPartList([selectedPart]) : setUpdatedPartList(selectedPart)
     }
   }
 

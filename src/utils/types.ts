@@ -1,3 +1,5 @@
+import { Url } from "node:url";
+
 export interface Base {
   id: number | null
 }
@@ -7,12 +9,11 @@ export interface Part extends Base {
   title: string,
   model: string,
   description: string,
-  status: string,
-  createdAt:string,
+  status?: string,
+  createdAt?:string,
   onEbaySince?: string,
   price: number,
-  saved: boolean,
-  pictures: PartImage[]
+  pictures?: PartPicture[]
 }
 
 export interface User extends Base {
@@ -20,6 +21,20 @@ export interface User extends Base {
   password:string
 }
 
-export interface PartImage extends Base {
+export interface PartPicture extends Base {
   url: string
+}
+
+
+
+export interface Action  {
+  payload: any,
+  type:string
+}
+
+
+export interface PartPicture extends Base{
+  url: Url
+
+  
 }
