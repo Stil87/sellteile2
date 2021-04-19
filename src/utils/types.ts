@@ -34,7 +34,7 @@ export interface Action  {
 
 
 export interface PartPicture extends Base{
-  url: Url
+  url: string
 
   
 }

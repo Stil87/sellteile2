@@ -2,6 +2,7 @@ import React from "react";
 import { AppBar, createStyles, Fab, fade, InputBase, makeStyles, Theme, Toolbar } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -65,39 +66,44 @@ const useStyles = makeStyles((theme: Theme) =>
 
   }),
 );
-export default function Appbar({updatePartList}:{updatePartList:Function}) {
+export default function Appbar({ updatePartList }: { updatePartList: Function }) {
 
   const classes = useStyles();
+  let history = useHistory();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.currentTarget
     updatePartList(parseInt(value))
-  
+
   }
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Toolbar>
-        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+        <Fab
+          color="secondary"
+          aria-label="add"
+          className={classes.fabButton}
+          onClick={() => history.push('/Create')}>
           <AddIcon />
         </Fab>
-        <div className={classes.grow} />
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            type='number'
-            onChange={handleChange}
-            placeholder="Teilenummer"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-          />
+      <div className={classes.grow} />
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
         </div>
+        <InputBase
+          type='number'
+          onChange={handleChange}
+          placeholder="Teilenummer"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ 'aria-label': 'search' }}
+        />
+      </div>
       </Toolbar>
-    </AppBar>
+    </AppBar >
   )
 }
