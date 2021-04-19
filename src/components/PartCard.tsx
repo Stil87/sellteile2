@@ -30,38 +30,37 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PartCard({ part }: { part: Part }) {
+export default function PartCard({ part, fromDetail }: { part: Part, fromDetail: boolean }) {
   const classes = useStyles();
   let history = useHistory()
 
   function handleDetailClick() {
-    history.push({ pathname: '/Create', state: part })
-
-
+    history.push({ pathname: '/Create', state: { part, fromDetail: true } })
   }
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-         {part.title}
+          {part.title}
           <br />
           {part.id}
         </Typography>
         <Typography variant="h5" component="h2">
-         {part.model}
+          {part.model}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-         {part.price}
+          {part.price}
         </Typography>
         <Typography variant="body2" component="p">
           {part.description}
         </Typography>
         <ImageGridList part={part} />
       </CardContent>
-      <CardActions>
-        <Button onClick={handleDetailClick} size="small">DETAILS</Button>
-      </CardActions>
+      {fromDetail ? null :
+        <CardActions>
+          <Button onClick={handleDetailClick} size="small">DETAILS</Button>
+        </CardActions>}
     </Card>
   );
 }
