@@ -59,7 +59,7 @@ export default function PartCard({ part, fromDetail }: { part: Part, fromDetail:
       </CardContent>
       {fromDetail ? null :
         <CardActions>
-          <Button onClick={handleDetailClick} size="small">DETAILS</Button>
+          <Button onClick={handleDetailClick} size="small">EDIT</Button>
         </CardActions>}
     </Card>
   );
