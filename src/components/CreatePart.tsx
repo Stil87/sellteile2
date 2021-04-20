@@ -1,5 +1,5 @@
 import { createStyles, makeStyles } from '@material-ui/core'
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { initialPartState, partReducer, } from '../utils/reducer'
 import { Action, Part } from '../utils/types'
@@ -25,18 +25,22 @@ export function CreatePart({ props }: any) {
   const classes = useStyles()
   const initialPart: Part = props.location?.state || initialPartState
 
-  const [state, dispatch] = useReducer<React.Reducer<Part, Action>>(partReducer, initialPart)
-console.log(state)
+  const [counter, setCounter] = useState(0)
+
+  const [currentPart, dispatch] = useReducer<React.Reducer<Part, Action>>(partReducer, initialPart)
+  console.log(counter)
   let history = useHistory()
+
+  
 
   return (
     <>
       {/* <div className={classes.container}> */}
-        <PartCard part={state} fromDetail={true} />
+      <PartCard part={currentPart} fromDetail={true} />
       <div className={classes.input} >
-        <CreatePartInput dispatch={dispatch} />
+        <CreatePartInput dispatch={dispatch} counter={ counter}/>
       </div>
-      <CreateAppbar />
+      <CreateAppbar setCounter={setCounter} counter={counter}/>
       {/* </div> */}
     </>
   )

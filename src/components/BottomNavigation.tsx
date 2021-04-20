@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, createStyles, Fab,  makeStyles, Theme, Toolbar } from "@material-ui/core";
+import { AppBar, createStyles, Fab, makeStyles, Theme, Toolbar } from "@material-ui/core";
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       top: 'auto',
       bottom: 0,
-      position:'absolute'
+      position: 'fixed'
     },
     grow: {
       flexGrow: 1,
@@ -32,14 +32,15 @@ const useStyles = makeStyles((theme: Theme) =>
       right: 0,
       margin: '0 auto',
     },
-    
-    
+
+
 
 
 
   }),
 );
-export default function Appbar() {
+export default function CreateAppbar({ setCounter, counter }:
+  { setCounter: React.Dispatch<React.SetStateAction<number>>, counter: number }) {
 
   const classes = useStyles();
   let history = useHistory();
@@ -57,14 +58,14 @@ export default function Appbar() {
           color="secondary"
           aria-label="right"
           className={classes.fabButtonRight}
-          onClick={() => history.push('/Create')}>
+          onClick={() => setCounter(prev => prev + 1)}>
           <ArrowForward />
         </Fab>
         <Fab
           color="secondary"
           aria-label="left"
           className={classes.fabButtonLeft}
-          onClick={() => history.push('/Create')}>
+          onClick={() =>counter === 0 ? history.push('/'): setCounter(prev=> prev-1)}>
           <ArrowBack />
         </Fab>
       </Toolbar>

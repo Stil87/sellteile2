@@ -5,7 +5,7 @@ import { ActionType } from '../utils/reducer';
 import { Action } from '../utils/types';
 
 
-export function CreatePartInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
+export function CreatePartInput({ dispatch, counter }: { dispatch: React.Dispatch<Action> , counter:number}) {
   
   function changeHandler(e: React.ChangeEvent< HTMLInputElement>) {
     console.log(e.currentTarget.value)
