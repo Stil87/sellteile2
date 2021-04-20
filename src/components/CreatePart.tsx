@@ -23,22 +23,21 @@ const useStyles = makeStyles(() => createStyles(
 
 export function CreatePart({ props }: any) {
   const classes = useStyles()
-  const initialPart: Part = props.location.state.part || initialPartState
-  const fromDetailClick = props.location.state.part || false
+  const initialPart: Part = props.location?.state || initialPartState
 
   const [state, dispatch] = useReducer<React.Reducer<Part, Action>>(partReducer, initialPart)
-
+console.log(state)
   let history = useHistory()
 
   return (
     <>
-      <div className={classes.container}>
-        <PartCard part={state} fromDetail={fromDetailClick} />
+      {/* <div className={classes.container}> */}
+        <PartCard part={state} fromDetail={true} />
       <div className={classes.input} >
-        <CreatePartInput />
+        <CreatePartInput dispatch={dispatch} />
       </div>
       <CreateAppbar />
-      </div>
+      {/* </div> */}
     </>
   )
 

@@ -32,5 +32,5 @@ export const partReducer:React.Reducer<Part,Action> =(state: Part, action: Actio
 
 const setPartTitle = (part: Part, title: string) => ({ ...part, title })
 const setPartModel = (part: Part, model: string) => ({ ...part, model })
-const setPartConstructionYear = (part: Part, constructionYear: string) => ({ ...part, constructionYear })
+const setPartConstructionYear = (part: Part, constructionYear: number) => ({ ...part, constructionYear })
 const setPartPictures = (part: Part, pictures: PartPicture[]) => ({ ...part, pictures })

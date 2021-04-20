@@ -35,7 +35,7 @@ export default function PartCard({ part, fromDetail }: { part: Part, fromDetail:
   let history = useHistory()
 
   function handleDetailClick() {
-    history.push({ pathname: '/Create', state: { part, fromDetail: true } })
+    history.push({ pathname: '/Create', state:  part })
   }
 
   return (
