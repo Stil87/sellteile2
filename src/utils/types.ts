@@ -9,6 +9,7 @@ export interface Part extends Base {
   title: string,
   model: string,
   description: string,
+  constructionYear?: number,
   status?: string,
   createdAt?:string,
   onEbaySince?: string,
@@ -31,10 +32,13 @@ export interface Action  {
   payload: any,
   type:string
 }
+export enum ActionType {
+  SET_TITLE = 'setTitle',
+  SET_MODEL = 'setModel',
+  SET_CONSTRUCTION_YEAR = 'setConstructionYear',
+  SET_PICTURES = 'setPictures',
+  SET_DESCRIPTION = 'setDescription',
+  SET_PRICE = 'setPrice'
 
-
-export interface PartPicture extends Base{
-  url: string
-
-  
 }
+

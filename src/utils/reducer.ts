@@ -1,13 +1,7 @@
-import { Action, Part, PartPicture } from "./types";
+import { Action, ActionType, Part, PartPicture } from "./types";
 
 
-export enum ActionType {
-  SET_TITLE = 'setTitle',
-  SET_MODEL = 'setModel',
-  SET_CONSTRUCTION_YEAR = 'setConstructionYear',
-  SET_PICTURES = 'setPictures'
 
-}
 
 
 export const initialPartState: Part = {
@@ -16,7 +10,8 @@ export const initialPartState: Part = {
   model: '',
   description: '',
   price: 0,
-  pictures:[]
+  pictures: [],
+
 }
 
 export const partReducer:React.Reducer<Part,Action> =(state: Part, action: Action) =>{

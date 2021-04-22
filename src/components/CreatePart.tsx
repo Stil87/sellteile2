@@ -28,7 +28,6 @@ export function CreatePart({ props }: any) {
   const [counter, setCounter] = useState(0)
 
   const [currentPart, dispatch] = useReducer<React.Reducer<Part, Action>>(partReducer, initialPart)
-  console.log(counter)
   let history = useHistory()
 
   
