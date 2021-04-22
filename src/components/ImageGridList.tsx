@@ -32,14 +32,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function ImageGri({ part }: { part: Part }) {
+export default function ImageGridList({ part }: { part: Part }) {
   const classes = useStyles();
-
+  console.log(part.localPictures, 'localpic')
+  const combinedPictures=[...part.pictures,...part.localPictures ]
+  
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
-        {part.pictures ? part.pictures.map((image) => (
-          <GridListTile key={image.id}>
+        {combinedPictures? combinedPictures.map((image) => (
+          <GridListTile key={image.uId}>
             <img src={image.url} alt={part.title} />
             <GridListTileBar
               title={part.title}

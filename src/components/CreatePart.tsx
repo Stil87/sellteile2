@@ -26,7 +26,7 @@ export function CreatePart({ props }: any) {
   const initialPart: Part = props.location?.state || initialPartState
 
   const [counter, setCounter] = useState(0)
-
+const [localImages, setLocalImages] = useState([])
   const [currentPart, dispatch] = useReducer<React.Reducer<Part, Action>>(partReducer, initialPart)
   let history = useHistory()
 

@@ -4,6 +4,7 @@ export interface Base {
 }
 
 export interface Part extends Base {
+
   firebaseId?:string
   title: string,
   model: string,
@@ -13,7 +14,10 @@ export interface Part extends Base {
   createdAt?:string,
   onEbaySince?: string,
   price: number,
-  pictures: PartPicture[]
+  pictures: PartPicture[],
+
+  localPictures:PartPicture[]
+
 }
 
 export interface User extends Base {
@@ -21,8 +25,9 @@ export interface User extends Base {
   password:string
 }
 
-export interface PartPicture extends Base {
-  url: string
+export interface PartPicture  {
+  url: string,
+  uId:string
 }
 
 
@@ -37,7 +42,9 @@ export enum ActionType {
   SET_CONSTRUCTION_YEAR = 'setConstructionYear',
   SET_PICTURES = 'setPictures',
   SET_DESCRIPTION = 'setDescription',
-  SET_PRICE = 'setPrice'
+  SET_PRICE = 'setPrice',
+
+  SET_LOCAL_PICTURE= 'setLocalPicture'
 
 }
 

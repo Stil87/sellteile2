@@ -5,6 +5,7 @@ import { Action, ActionType } from '../utils/types';
 import { createStyles, makeStyles } from '@material-ui/core';
 
 import ImageIcon from '@material-ui/icons/Image';
+import { turnFileToPartPicture } from '../utils/ImageHandler';
 
 const TITEL_LABEL = 'Titel'
 const MODEL_LABEL = 'Baureihe'
@@ -53,10 +54,19 @@ export function CreatePartInput({ dispatch, counter }: { dispatch: React.Dispatc
     default:
       break;
   }
-  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  function updateCurrentPart(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.currentTarget
     dispatch({ type: action, payload: value })
   }
+
+  const handleImageChange = async () => {
+
+    if (imageInput.current?.files) {
+      turnFileToPartPicture(imageInput.current.files[0]).then(partPicture =>
+        dispatch({ type: ActionType.SET_LOCAL_PICTURE, payload: partPicture }))
+    }
+  }
+
 
   return (
     <form noValidate autoComplete="on">
@@ -65,10 +75,10 @@ export function CreatePartInput({ dispatch, counter }: { dispatch: React.Dispatc
           htmlFor="file-upload"
           className="custom-file-upload">
           Fotos Hochladen
-          <ImageIcon/>
-          <input ref={imageInput} id="file-upload" className={classes.input } type="file" />
+          <ImageIcon />
+          <input ref={imageInput} onChange={handleImageChange} id="file-upload" className={classes.input} type="file" />
         </label> :
-        <TextField onChange={changeHandler} id="outlined-basic" label={label} variant="outlined" type={type} />}
+        <TextField onChange={updateCurrentPart} id="outlined-basic" label={label} variant="outlined" type={type} />}
     </form>
   );
 
