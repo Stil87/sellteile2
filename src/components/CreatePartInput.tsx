@@ -2,6 +2,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Action, ActionType } from '../utils/types';
+import { createStyles, makeStyles } from '@material-ui/core';
+
+import ImageIcon from '@material-ui/icons/Image';
 
 const TITEL_LABEL = 'Titel'
 const MODEL_LABEL = 'Baureihe'
@@ -9,9 +12,18 @@ const DESCRIPTION_LABEL = 'Beschreibung'
 const CONSTRUCTION_YEAR_LABEL = 'Baujahr'
 const PRICE_LABEL = 'Preis'
 
+const useStyles = makeStyles(() => createStyles(
+  {
+    input: {
+      display: 'none'
+    }
+  }
+))
+
 
 export function CreatePartInput({ dispatch, counter }: { dispatch: React.Dispatch<Action>, counter: number }) {
-
+  const imageInput = React.createRef<HTMLInputElement>()
+  const classes = useStyles()
 
   let label = TITEL_LABEL
   let action = ActionType.SET_TITLE
@@ -48,7 +60,15 @@ export function CreatePartInput({ dispatch, counter }: { dispatch: React.Dispatc
 
   return (
     <form noValidate autoComplete="on">
-      <TextField onChange={changeHandler} id="outlined-basic" label={label} variant="outlined" type={type} />
+      {counter === 5 ?
+        <label
+          htmlFor="file-upload"
+          className="custom-file-upload">
+          Fotos Hochladen
+          <ImageIcon/>
+          <input ref={imageInput} id="file-upload" className={classes.input } type="file" />
+        </label> :
+        <TextField onChange={changeHandler} id="outlined-basic" label={label} variant="outlined" type={type} />}
     </form>
   );
 

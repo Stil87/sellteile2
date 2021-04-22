@@ -1,4 +1,3 @@
-import { Url } from "node:url";
 
 export interface Base {
   id: number | null
