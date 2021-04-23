@@ -60,12 +60,12 @@ export function CreatePartInput({ dispatch, counter }: { dispatch: React.Dispatc
   }
 
   const handleImageChange = async () => {
-
     if (imageInput.current?.files) {
       turnFileToPartPicture(imageInput.current.files[0]).then(partPicture =>
         dispatch({ type: ActionType.SET_LOCAL_PICTURE, payload: partPicture }))
     }
   }
+
 
 
   return (

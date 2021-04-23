@@ -43,8 +43,9 @@ export enum ActionType {
   SET_PICTURES = 'setPictures',
   SET_DESCRIPTION = 'setDescription',
   SET_PRICE = 'setPrice',
-
-  SET_LOCAL_PICTURE= 'setLocalPicture'
+  SET_LOCAL_PICTURE = 'setLocalPicture',
+  
+  DELETE_PART_PICTURE = 'deletePartPicture'
 
 }
 

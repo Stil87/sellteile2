@@ -1,9 +1,5 @@
 import { Action, ActionType, Part, PartPicture } from "./types";
 
-
-
-
-
 export const initialPartState: Part = {
   id: null,
   title: '',
@@ -12,7 +8,6 @@ export const initialPartState: Part = {
   price: 0,
   pictures: [],
   localPictures: []
-
 }
 
 export const partReducer: React.Reducer<Part, Action> = (state: Part, action: Action) => {
@@ -22,6 +17,7 @@ export const partReducer: React.Reducer<Part, Action> = (state: Part, action: Ac
     case ActionType.SET_CONSTRUCTION_YEAR: return setPartConstructionYear(state, action.payload)
     case ActionType.SET_PICTURES: return setPartPictures(state, action.payload)
     case ActionType.SET_LOCAL_PICTURE: return setLocalPicture(state, action.payload)
+    case ActionType.DELETE_PART_PICTURE: return deletePartPicture(state, action.payload)
     default: return state
   }
 }
@@ -30,11 +26,12 @@ export const partReducer: React.Reducer<Part, Action> = (state: Part, action: Ac
 const setPartTitle = (part: Part, title: string) => ({ ...part, title })
 const setPartModel = (part: Part, model: string) => ({ ...part, model })
 const setPartConstructionYear = (part: Part, constructionYear: number) => ({ ...part, constructionYear })
-const setPartPictures = (part: Part, picture: PartPicture) => ({ ...part, pictures: [...part.pictures,picture] })
-const setLocalPicture = (part: Part, localPicture: PartPicture) => {
-  return ({
-    ...part,
-    localPictures: [...part.localPictures, localPicture
-    ]
-  })
-}
+const setPartPictures = (part: Part, picture: PartPicture) => ({ ...part, pictures: [...part.pictures, picture] })
+const setLocalPicture = (part: Part, localPicture: PartPicture) => ({ ...part, localPictures: [...part.localPictures, localPicture] })
+
+const deletePartPicture = (part: Part, uId: string) =>
+({
+  ...part,
+  localPictures: part.localPictures.filter((partPicture: PartPicture) => partPicture.uId !== uId),
+  pictures: part.pictures.filter((partPicture: PartPicture) => partPicture.uId !== uId),
+})

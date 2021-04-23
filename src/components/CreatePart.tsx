@@ -26,7 +26,6 @@ export function CreatePart({ props }: any) {
   const initialPart: Part = props.location?.state || initialPartState
 
   const [counter, setCounter] = useState(0)
-const [localImages, setLocalImages] = useState([])
   const [currentPart, dispatch] = useReducer<React.Reducer<Part, Action>>(partReducer, initialPart)
   let history = useHistory()
 
@@ -35,7 +34,7 @@ const [localImages, setLocalImages] = useState([])
   return (
     <>
       {/* <div className={classes.container}> */}
-      <PartCard part={currentPart} fromDetail={true} />
+      <PartCard part={currentPart} fromDetail={true} showPictureDelete={true} dispatch={dispatch}/>
       <div className={classes.input} >
         <CreatePartInput dispatch={dispatch} counter={ counter}/>
       </div>

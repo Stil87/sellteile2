@@ -5,6 +5,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import { Part } from '../utils/types';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,29 +33,29 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function ImageGridList({ part }: { part: Part }) {
+export default function ImageGridList({ part, showPictureDelete, deletePicture }: { part: Part, showPictureDelete?: boolean, deletePicture:Function }) {
   const classes = useStyles();
-  console.log(part.localPictures, 'localpic')
-  const combinedPictures=[...part.pictures,...part.localPictures ]
-  
+  const combinedPictures = [...part.pictures, ...part.localPictures]
+console.log(showPictureDelete)
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
-        {combinedPictures? combinedPictures.map((image) => (
+        {combinedPictures ? combinedPictures.map((image, index) => (
           <GridListTile key={image.uId}>
             <img src={image.url} alt={part.title} />
-            <GridListTileBar
-              title={part.title}
-              classes={{
-                root: classes.titleBar,
-                title: classes.title,
-              }}
-              actionIcon={
-                <IconButton aria-label={`star ${part.title}`}>
-                  <div className={classes.title} />
-                </IconButton>
-              }
-            />
+            {showPictureDelete
+              ? < GridListTileBar
+                classes={{
+                  root: classes.titleBar,
+                  title: classes.title,
+                }}
+                actionIcon={
+
+                  <IconButton onClick={()=>deletePicture(image.uId)} aria-label={`star ${index}`}>
+                    <DeleteIcon color='primary' />
+                  </IconButton>
+                }
+              /> : null}
           </GridListTile>
         )) : null}
       </GridList>

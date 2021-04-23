@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Part } from "../utils/types";
+import { Action, ActionType, Part } from "../utils/types";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -30,13 +30,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PartCard({ part, fromDetail }: { part: Part, fromDetail: boolean }) {
+export default function PartCard({ part, fromDetail, showPictureDelete, dispatch }: { part: Part, fromDetail: boolean, showPictureDelete?: boolean , dispatch?:React.Dispatch<Action>}) {
   const classes = useStyles();
   let history = useHistory()
 
   function handleDetailClick() {
-    history.push({ pathname: '/Create', state:  part })
+    history.push({ pathname: '/Create', state: part })
   }
+
+  const deletePicture = (uId: string) => 
+    dispatch && dispatch({ type: ActionType.DELETE_PART_PICTURE, payload: uId })
+  
+
 
   return (
     <Card className={classes.root}>
@@ -55,7 +60,8 @@ export default function PartCard({ part, fromDetail }: { part: Part, fromDetail:
         <Typography variant="body2" component="p">
           {part.description}
         </Typography>
-        <ImageGridList part={part} />
+        <ImageGridList part={part} showPictureDelete={showPictureDelete
+        } deletePicture={deletePicture}/>
       </CardContent>
       {fromDetail ? null :
         <CardActions>
